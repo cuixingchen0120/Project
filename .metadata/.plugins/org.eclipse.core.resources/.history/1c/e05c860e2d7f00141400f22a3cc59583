@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="neu.edu.cs5200.* , java.util.*"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%				HistoryDAO hdao = new HistoryDAO();
+				UserDAO udao = new UserDAO();
+				String username = Global.username;
+ 				User user = udao.findUserbyUsername(username);
+ 				String action = request.getParameter("action");
+ 				String idStr = request.getParameter("id");
+ 				if("remove".equals(action)) {
+ 					User user1 = udao.findUserbyUsername(username);
+ 					hdao.deleteHistory(user);
+ 				}
+ 				
+				List<History> histories = hdao.findAllHistory(user);
+				for(History dir:histories) {
+					
+				%>
+<div class="panel panel-info" style="margin: 20px 40px 0px 40px">
+		<div class="panel-heading">Comment</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">CommentTitle</div>
+			<div class="panel-body">
+				
+			<p><%= dir.getUsername()%> + <%=dir.getHistoryid() %></p>
+			<td><a action=remove&id=<%= history.getUser() %>" class="btn btn-danger">Delete</a>
+			</div>
+			
+			
+		</div>
+	</div>
+	<%} %>
+</body>
+</html>

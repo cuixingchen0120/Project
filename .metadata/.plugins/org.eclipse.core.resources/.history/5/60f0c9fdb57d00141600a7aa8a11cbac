@@ -1,0 +1,353 @@
+package neu.edu.cs5200;
+
+import java.io.Serializable;
+import java.lang.String;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Card
+ *
+ */
+@Entity
+
+public class Card implements Serializable {
+
+
+	@Id
+	public int id;
+	public int relatedCardId;
+	public int setNumber;
+	public String name;
+	public String searchName;
+	public String description;
+	public String flavor;
+	public String colors;
+	public String manacost;
+	public String convertedManaCost;
+	public String cardSetName;
+	public String type;
+	public String subType;
+	public int power;
+	public int toughness;
+	public int loyalty;
+	public String rarity;
+	public String artist;
+	public String cardSetId;
+	public boolean token;
+	public boolean promo;
+	@Temporal(TemporalType.DATE)
+	public Date releasedAt;
+	public String searchByUser;
+//	public Ruling[] rulings;
+//	public Format[] formats;
+	private static final long serialVersionUID = 1L;
+	
+	//bi-directional many-to-one association to Like
+//		@OneToMany(mappedBy="card")
+//		private List<Like> likes;
+		
+		public String toString(){
+			return "Id is" + id + " relatedCardId is " + relatedCardId  +" SetNumber is " + setNumber +" color is " + colors + " name is " + name + " power is "+ power +" description is " + description;
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+
+	public Card() {
+		super();
+	}   
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}   
+	public int getRelatedCardId() {
+		return this.relatedCardId;
+	}
+
+	public void setRelatedCardId(int relatedCardId) {
+		this.relatedCardId = relatedCardId;
+	}   
+	public int getSetNumber() {
+		return this.setNumber;
+	}
+
+	public void setSetNumber(int setNumber) {
+		this.setNumber = setNumber;
+	}   
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}   
+	public String getSearchName() {
+		return this.searchName;
+	}
+
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
+	}   
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}   
+	public String getFlavor() {
+		return this.flavor;
+	}
+
+	public void setFlavor(String flavor) {
+		this.flavor = flavor;
+	}   
+	public String getColors() {
+		return this.colors;
+	}
+
+	public void setColors(String colors) {
+		this.colors = colors;
+	}   
+	public String getManacost() {
+		return this.manacost;
+	}
+
+	public void setManacost(String manacost) {
+		this.manacost = manacost;
+	}   
+	public String getConvertedManaCost() {
+		return this.convertedManaCost;
+	}
+
+	public void setConvertedManaCost(String convertedManaCost) {
+		this.convertedManaCost = convertedManaCost;
+	}   
+	public String getCardSetName() {
+		return this.cardSetName;
+	}
+
+	public void setCardSetName(String cardSetName) {
+		this.cardSetName = cardSetName;
+	}   
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}   
+	public String getSubType() {
+		return this.subType;
+	}
+
+	public void setSubType(String subType) {
+		this.subType = subType;
+	}   
+	public int getPower() {
+		return this.power;
+	}
+
+	public void setPower(int power) {
+		this.power = power;
+	}   
+	public int getToughness() {
+		return this.toughness;
+	}
+
+	public void setToughness(int toughness) {
+		this.toughness = toughness;
+	}   
+	public int getLoyalty() {
+		return this.loyalty;
+	}
+
+	public void setLoyalty(int loyalty) {
+		this.loyalty = loyalty;
+	}   
+	public String getRarity() {
+		return this.rarity;
+	}
+
+	public void setRarity(String rarity) {
+		this.rarity = rarity;
+	}   
+	public String getArtist() {
+		return this.artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}   
+	public String getCardSetId() {
+		return this.cardSetId;
+	}
+
+	public void setCardSetId(String cardSetId) {
+		this.cardSetId = cardSetId;
+	}   
+	public boolean getToken() {
+		return this.token;
+	}
+
+	public void setToken(boolean token) {
+		this.token = token;
+	}   
+	public boolean getPromo() {
+		return this.promo;
+	}
+
+	public void setPromo(boolean promo) {
+		this.promo = promo;
+	}   
+	public Date getReleasedAt() {
+		return this.releasedAt;
+	}
+
+	public void setReleasedAt(Date releasedAt) {
+		this.releasedAt = releasedAt;
+	}   
+//	public Ruling[] getRulings() {
+//		return this.rulings;
+//	}
+//
+//	public void setRulings(Ruling[] rulings) {
+//		this.rulings = rulings;
+//	}   
+//	public Format[] getFormats() {
+//		return this.formats;
+//	}
+//
+//	public void setFormats(Format[] formats) {
+//		this.formats = formats;
+//	}
+//	public List<Like> getLikes() {
+//		return likes;
+//	}
+//	public void setLikes(List<Like> likes) {
+//		this.likes = likes;
+//	}
+//	public Like addLike(Like like) {
+//		getLikes().add(like);
+//		like.setCard(this);
+//
+//		return like;
+//	}
+//
+//	public Like removeLike(Like like) {
+//		getLikes().remove(like);
+//		like.setCard(null);
+//
+//		return like;
+	//}
+
+
+
+
+
+
+
+	public Card(int id, int relatedCardId, int setNumber, String name,
+			String colors, int power) {
+		super();
+		this.id = id;
+		this.relatedCardId = relatedCardId;
+		this.setNumber = setNumber;
+		this.name = name;
+		this.colors = colors;
+		this.power = power;
+	}
+
+
+
+
+	public Card(int id, int relatedCardId, int setNumber, String name,
+			String colors) {
+		super();
+		this.id = id;
+		this.relatedCardId = relatedCardId;
+		this.setNumber = setNumber;
+		this.name = name;
+		this.colors = colors;
+	}
+
+
+
+
+
+
+
+	public Card(int id, int relatedCardId, int setNumber, String name,
+			String description, String colors, int power) {
+		super();
+		this.id = id;
+		this.relatedCardId = relatedCardId;
+		this.setNumber = setNumber;
+		this.name = name;
+		this.description = description;
+		this.colors = colors;
+		this.power = power;
+	}
+
+
+
+
+
+
+
+	public Card(int id, int relatedCardId, int setNumber, String name,
+			String searchName, String description, String flavor,
+			String colors, String manacost, String convertedManaCost,
+			String cardSetName, String type, String subType, int power) {
+		super();
+		this.id = id;
+		this.relatedCardId = relatedCardId;
+		this.setNumber = setNumber;
+		this.name = name;
+		this.searchName = searchName;
+		this.description = description;
+		this.flavor = flavor;
+		this.colors = colors;
+		this.manacost = manacost;
+		this.convertedManaCost = convertedManaCost;
+		this.cardSetName = cardSetName;
+		this.type = type;
+		this.subType = subType;
+		this.power = power;
+	}
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+   
+}

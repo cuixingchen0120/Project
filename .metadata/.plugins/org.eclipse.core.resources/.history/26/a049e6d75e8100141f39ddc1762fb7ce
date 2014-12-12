@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="neu.edu.cs5200.* , java.util.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function myFunction()
+	{
+	
+			
+			alert("The card does not exist");
+		
+		
+		
+	}
+	</script>
+	
+</head>
+
+<body>
+
+<h1>History</h1>
+
+<%
+List<History> histories = hdao.findHistoryByUsername("hyy");
+for(History dir:histories) {
+	//hdao.deleteHistory(dir);
+	System.out.println(dir.getUser());
+	hdao.deleteHistory(dir.getHistoryid());
+}	
+%>
+
+
+
+<td><input type="text" name="name" class="form-control"  placeholder="name"/></td>
+
+<button  type="button" onclick="myFunction()">click</button>
+
+</body>
+</html>

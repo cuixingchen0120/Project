@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/round-about.css" rel="stylesheet">
+<title>SearchByName</title>
+
+
+
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"
+					href="http://localhost:8080/DotAHOT/dotaHotIndex.jsp">MTG</a>
+			</div>
+
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+
+
+	<form action="/neu.edu.cs5200/SearchName">
+		<table class="table">
+
+			<tr>
+				<td>Please insert a name of set</td>
+				<td><input id="card" type="text" name="name"
+					class="form-control" placeholder="set" /></td>
+
+				<td><button name="action" value="search"
+						class="btn btn-success">Search</button></td>
+
+			</tr>
+		</table>
+	</form>
+
+	<h1>  Zendikar</h1>
+	<%      
+	Browse dao = new Browse();
+    List<Card> cards = dao.readAllCardBySet("ZEN");
+	%>
+	<table class="table table-hover">
+		<caption>  1-269</caption>
+		<caption></caption>
+		<thead>
+			<tr>
+			    <th width="1px"></th>
+				<th width="1px">No</th>
+				<th width="120px">Card Name</th>
+				<th width="120px">Type</th>
+				<th width="30px">Mana</th>
+				<th width="30px">Rarity</th>
+				<th width="30px">Edition</th>
+			</tr>
+		</thead>
+
+		<tbody>
+<%		   
+					for (Card app : cards) {
+%> 
+
+ 			    <tr>
+ 			    <td width="1px"></td>
+ 				<td>    <%= app.getSetNumber()%></td>
+	            <td><%= app.getName()%></td>
+	            <td><%= app.getType()%> 
+	                <%if(app.getSubType()!=null){ 
+	                %> - <%= app.getSubType()%><% }
+                     else{}
+                     %>
+                    <%if(app.getType().equals("Creature")){%>
+	                <%=app.getPower()%>/<%=app.getToughness()%><%}
+                     else{}
+                     %></td>
+	            <td><%= app.getManacost()%></td>
+	            <td><%= app.getRarity()%></td>
+	            <td><%= app.getCardSetName()%></td>
+<%
+		}
+%>
+</tr>
+			
+		</tbody>
+	</table>
+</body>
+</html>

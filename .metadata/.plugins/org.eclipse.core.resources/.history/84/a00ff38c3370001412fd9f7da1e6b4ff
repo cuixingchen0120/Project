@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="neu.edu.cs5200.*"%>
+<!DOCTYPE html>
+<html>
+<body>
+
+<td>Please insert a name</td>
+			
+			<td><input type="text" name="name"  placeholder="name"/></td>
+<script>
+	function myFunction()
+	{
+	alert("noob");
+		
+	}
+	</script>
+
+
+			
+
+			
+			<td><button type="button" onclick="myFinction()" > Search</button></td>
+	
+
+</body>
+</html>

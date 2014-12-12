@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="neu.edu.cs5200.*"%>
+<!DOCTYPE html>
+<html>
+<body>
+
+<td>Please insert a name</td>
+			
+			<td><input type="text" name="name" class="form-control"  placeholder="name"/></td>
+<script>
+	function myFunction()
+	{
+		String name1=document.getELementByName("name").value;
+		 GetACardByName get = new GetACardByName();
+		 Card card = new Card();
+			card = get.getCardByName(name);
+		if(name1.equals(card.getName())){
+			
+			 
+			System.out.println("The card's id is" +card.getId() );
+			System.out.println("The Name is "  +card.getName() );
+		}else{
+			
+			alert("The card does not exist");
+		}
+		
+		
+	}
+	</script>
+
+
+			
+
+			
+			<td><button name="action" value="search" class="btn btn-success" onclick="myFinction()" > Search</button></td>
+	
+
+</body>
+</html>

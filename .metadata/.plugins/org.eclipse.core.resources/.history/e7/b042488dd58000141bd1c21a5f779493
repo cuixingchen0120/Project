@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/round-about.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<title>Personal Information</title>
+
+
+
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"
+					href="http://localhost:8080/DotAHOT/dotaHotIndex.jsp">MTG</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">About</a></li>
+					<li><a href="#">SearchByName</a></li>
+					<li><a href="#">RandomACard</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a id="login" href="http://localhost:8080/neu.edu.cs5200/Login.jsp">Log
+							in</a></li>
+					<li><a>|</a></li>
+					<li><a id="logout" href="http://localhost:8080/neu.edu.cs5200/Register.jsp">Register</a></li>
+
+				</ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+		<div class="container">
+		<h2>Update Your Information</h2>
+
+		<div class="row">
+			<div class="col-md-3">
+			    <h6>&nbsp;</h6>
+				<h5><button class="btn btn-primary">Update Info</button></h5>
+                <h5>&nbsp;</h5>
+		        <h5><button class="btn btn-primary">View Search History</button></h5>
+		        <h5>&nbsp;</h5>
+		        <h5><button class="btn btn-primary">View My Rate</button></h5>
+		        <h5>&nbsp;</h5>
+		        <h5><button class="btn btn-primary">View My Comment</button></h5>
+
+			</div>
+
+			<div class="col-md-9">
+
+			<h6>&nbsp;</h6>
+<input id="card" type="text" name="name" class="form-control"  placeholder="getusername"/>
+<h2></h2>
+<input id="card" type="text" name="name" class="form-control"  placeholder="getpassword"/>
+<h2></h2>
+<input id="card" type="text" name="name" class="form-control"  placeholder="getfirstname"/>
+<h2></h2>
+<input id="card" type="text" name="name" class="form-control"  placeholder="getlastname"/>
+<h2></h2>
+<input id="card" type="text" name="name" class="form-control"  placeholder="getemail"/>
+<h2></h2>
+<h5 class="text-right"><button class="btn btn-primary">Submit</button></h5>
+<h5></h5>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

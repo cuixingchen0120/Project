@@ -1,0 +1,114 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="neu.edu.cs5200.*, java.util.List"%>
+<!DOCTYPE html >
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/round-about.css" rel="stylesheet">
+<title>SearchByName</title>
+
+
+
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"
+					href="http://localhost:8080/DotAHOT/dotaHotIndex.jsp">MTG</a>
+			</div>
+
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+
+
+	<form action="/neu.edu.cs5200/SearchName">
+		<table class="table">
+
+			<tr>
+				<td>Please insert a name of set</td>
+				<td><input id="card" type="text" name="name"
+					class="form-control" placeholder="set" /></td>
+
+				<td><button name="action" value="search"
+						class="btn btn-success">Search</button></td>
+
+			</tr>
+		</table>
+	</form>
+
+	<h1>  Zendikar</h1>
+	<%      
+	AverageRateDAO dao = new AverageRateDAO();
+	List<AverageRate> averagerates = dao.Output();
+	AverageRateDAO dao2 = new AverageRateDAO();
+	List<Card> cards = dao2.Getinfo();
+
+	%>
+	<%    
+			int n=0;
+ while (n<10){
+%>
+
+
+	<div class="container">
+		<h2>
+			Top<%=n+1%>:
+		</h2>
+
+		<div class="row">
+			<div class="col-md-3">
+				</h5>
+				<img alt=""
+					src="http://api.mtgdb.info/content/card_images/<%=cards.get(n).getId()%>.jpeg">
+				</h5>
+			</div>
+
+			<div class="col-md-9">
+				<h3><%=averagerates.get(n).getCardname()%></h3>
+					<h5><%= cards.get(n).getType()%> 
+	                <%if(cards.get(n).getSubtype()!=null){ 
+	                %> - <%= cards.get(n).getSubtype()%><% }
+                     else{}
+                     %>
+                    <%if(cards.get(n).getType().equals("Creature")){%>
+	                <%=cards.get(n).getPower()%>/<%=cards.get(n).getToughness()%><%}
+                     else{}
+                     %></h5>
+				<p><%= cards.get(n).getDescription()%></p>
+				<p><%= cards.get(n).getCardsetname()%>  (<%= cards.get(n).getRarity()%>)</p>
+				<h4>Rate:  <%=averagerates.get(n).getAveragerate()%></h4>
+				<h4></h4>
+			</div>
+		</div>
+	</div>
+
+	<%
+		n = n + 1;
+		}
+	%>
+</body>
+</html>

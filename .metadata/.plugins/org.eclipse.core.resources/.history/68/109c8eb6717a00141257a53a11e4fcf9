@@ -1,0 +1,127 @@
+package neu.edu.cs5200;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+public class UserDAO {
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("neu.edu.cs5200");
+	EntityManager em = null;
+	
+	public UserDAO(){
+		em=factory.createEntityManager();
+	}
+	
+	/*get user by username and password */
+	public User GetUserByUsernameAndPassword(String username,String password)
+	{
+		List<User> user= new ArrayList<User>();
+		User user1=null;
+		em.getTransaction().begin();
+		
+		Query query = em.createQuery("select u from User u where u.username=:?");
+		
+		query.setParameter("?",username);
+		
+		user= query.getResultList();
+	
+		em.getTransaction().commit();
+		em.close();
+		
+		if(!user.isEmpty())
+		{
+			System.out.println(!user.isEmpty());
+		
+		
+			user1=user.get(0);
+		
+		
+			System.out.println(user.isEmpty());
+
+		
+			if(password.equals(user1.getPassword()))
+		
+			{	
+			
+			
+				return user1;
+		}
+		}
+		return null;
+	}
+	
+	
+	/* create the user */
+	public void  createUser(User user){
+		em.getTransaction().begin();
+		em.persist(user);
+		em.getTransaction().commit();	
+		
+		
+	}
+	
+	/* update the Users' password */
+	public void changeUsersPassword(User user, String newPassword){
+		em.getTransaction().begin();
+		user.setPassword(newPassword);
+		/* using merge() to change or update */ 
+		em.merge(user);
+		em.getTransaction().commit();
+	}
+	
+	/*remove users */
+	public void removeUser(User user , int id){
+		em.getTransaction().begin();
+		user.getId();
+		em.remove(user);
+		em.getTransaction().commit();
+	}
+	
+	/* find user by userid */
+	public User findUser(int userid){
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		
+		User user = em.find(User.class, userid);
+		
+		em.getTransaction().commit();
+		em.close();
+		return user;
+		
+	}
+	
+	/*public User findUserbyUsernameAndPassword(String username, String password){
+		em.getTransaction().begin();
+		User user = em.find(User.class, username, password);
+		
+		em.getTransaction().commit();
+		em.close();
+		return user;
+	} */
+	
+	public static void main(String[] args) {
+		
+		UserDAO manager = new UserDAO();
+		User u1 = new User("undavid","undavid","Alice","WonderLand","alice@wonderland.com",new Date());
+		User u2 = new User("undavid","undavid","HYY","WonderLand","emma@wonderland.com",new Date());
+		User u3 = new User("hyy","undavid","noob","WonderLand","emma@wonderland.com",new Date());
+		manager.createUser(u1);
+		manager.createUser(u2);
+		manager.createUser(u3);
+		System.out.println(u1);
+		
+		manager.changeUsersPassword(u2,"unEmma");
+		System.out.println(u2);
+		
+		manager.removeUser(u2,2);
+		
+		User user1 = manager.GetUserByUsernameAndPassword("Bob","11123");
+		System.out.println();
+	}
+
+}

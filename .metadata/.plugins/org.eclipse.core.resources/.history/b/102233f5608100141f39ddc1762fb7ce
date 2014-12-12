@@ -1,0 +1,99 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+	import="neu.edu.cs5200.*, java.util.List"%>
+<!DOCTYPE html >
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/round-about.css" rel="stylesheet">
+<title>SearchByName</title>
+
+
+
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"
+					href="http://localhost:8080/DotAHOT/dotaHotIndex.jsp">MTG</a>
+			</div>
+
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+
+
+	<form action="/neu.edu.cs5200/SearchName">
+		<table class="table">
+
+			<tr>
+				<td>Please insert a name of set</td>
+				<td><input id="card" type="text" name="name"
+					class="form-control" placeholder="set" /></td>
+
+				<td><button name="action" value="search"
+						class="btn btn-success">Search</button></td>
+
+			</tr>
+		</table>
+	</form>
+
+	<h1 style="margin: 1px 87px">Search History</h1>
+	<%
+		HistoryDAO dao = new HistoryDAO();
+	List<History> histories = dao.findHistoryByUsername("yhh");
+	%>
+	<table class="table table-hover">
+		<caption style="margin: 1px 87px"> <%=histories.size() %> results</caption>
+		<thead>
+			<tr>
+                <th width="80px"></th>
+				<th width="300px">Username</th>
+				<th width="400px">Cardname</th>
+				<th>DateSearched</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<%
+				for (History app : histories) {
+			%>
+			<tr>
+			    <td width="80px"></td>
+				<td width="300px"><%=app.getUsername()%></td>
+				<td width="400px"><%=app.getCardname()%></td>
+				<td><%=app.getDatesearched()%></td>
+				<%
+					}
+				%>
+			</tr>
+
+
+		</tbody>
+	</table>
+</body>
+</html>
+

@@ -1,0 +1,176 @@
+package neu.edu.cs5200;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+public class UserDAO {
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("neu.edu.cs5200");
+	EntityManager em = null;
+	
+	public UserDAO(){
+		em=factory.createEntityManager();
+	}
+	
+
+	
+	
+	/* create the user */
+	public void  createUser(User user){
+		em.getTransaction().begin();
+		em.persist(user);
+		em.getTransaction().commit();	
+		
+		
+	}
+	
+	/* update the Users' password */
+	public void changeUsersPassword(User user, String newPassword){
+		em.getTransaction().begin();
+		user.setPassword(newPassword);
+		/* using merge() to change or update */ 
+		em.merge(user);
+		em.getTransaction().commit();
+	}
+	
+	public User UpdateUser(User user , String username ,String password , String firstname , String lastname , String email){
+	em.getTransaction().begin();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setFirstname(firstname);
+		user.setLastname(lastname);
+		user.setEmail(email);
+		em.merge(user);
+		em.getTransaction().commit();
+		return user;
+	}
+	
+	/*remove users */
+	public void removeUser(User user , int id){
+		em.getTransaction().begin();
+		user.getId();
+		em.remove(user);
+		em.getTransaction().commit();
+	}
+	
+	/* find user by userid */
+	public User findUser(int userid){
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		
+		User user = em.find(User.class, userid);
+		
+		em.getTransaction().commit();
+		em.close();
+		return user;
+		
+	}
+	
+	public User findUserbyUsername(String username){
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		Query query = em.createQuery("select u from User u where u.username=:username");
+		query.setParameter("username",username);
+		if(username!=""){
+		try{
+		User user= (User)query.getSingleResult();
+			 
+		em.getTransaction().commit();
+		em.close();
+		return user;
+	}
+	catch(Exception e){
+		return null;
+		
+	}
+		}else{
+			return null;
+		}
+	
+}
+		
+		
+
+	public User findUserByUsernameAndPassword(String username , String password){
+
+		em.getTransaction().begin();
+		Query query = em.createQuery("select u from User u where u.username=:username");
+		
+		query.setParameter("username",username);
+		try{
+		User user= (User)query.getSingleResult();
+		em.getTransaction().commit();
+		em.close();
+		
+			if(user.getPassword().equals(password)){
+	
+				return user;
+			}
+			else{
+				return null;
+			}
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
+	
+	public void addFavouriteCard(int userId, int cardId) {
+		em.getTransaction().begin();
+		User user = em.find(User.class, userId);
+		Query query = em.createQuery("select c from Card c where c.cardid=:cardid");
+		
+		query.setParameter("cardid",cardid);
+		Card card = em.find(Card.class, cardId);
+		user.getFavourCards().add(card);//return all cards user favour; add a new card in the list
+		em.getTransaction().commit();
+	}
+	
+	public void deleteFavouriteCard(int userId, int cardId) {
+		em.getTransaction().begin();
+		Card card = em.getReference(Card.class, cardId);
+		User user = em.find(User.class, userId);
+		user.getFavourCards().remove(card);
+		em.getTransaction().commit();
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+//		UserDAO manager = new UserDAO();
+//		User u1 = new User("undavid","undavid","Alice","WonderLand","alice@wonderland.com",new Date());
+//		User u2 = new User("david","undavid","HYY","WonderLand","emma@wonderland.com",new Date());
+//		User u3 = new User("hyy","undavid","noob","WonderLand","emma@wonderland.com",new Date());
+//		User u4 = new User("hyy123","undavid","noob","WonderLand","emma@wonderland.com",new Date());
+//		manager.createUser(u1);
+//		manager.createUser(u2);
+//		manager.createUser(u3);
+//		manager.createUser(u4);
+//		
+//		System.out.println(u3);
+//		manager.UpdateUser(u4, "yyh", "undavid" , "firstname", "lastname", "email");
+//		
+//		manager.changeUsersPassword(u2,"unEmma");
+//		System.out.println(u2);
+		//User u2 = manager.findUser(1);
+		//manager.removeUser(u2,1);
+		
+		//manager.GetUserByUsernameAndPassword("Bob","11123");
+		//User user = manager.findUserByUsernameAndPassword("hyy2","hyy2");
+		//System.out.println(user);
+		//User u1 = manager.findUserbyUsername(null);
+		//User u2 = manager.findUserbyUsername("undavid");
+		//System.out.println(u1);
+		//System.out.println(u2.getUsername());
+		UserDAO dao =new UserDAO();
+		dao.addFavouriteCard(3, 1);
+	}
+
+}

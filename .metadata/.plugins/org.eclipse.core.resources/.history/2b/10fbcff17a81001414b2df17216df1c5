@@ -1,0 +1,119 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html >
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/round-about.css" rel="stylesheet">
+<title>RegisterPage</title>
+
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script>
+function myFunction(){
+	var a = document.getElementById("noob").value;
+	var b = document.getElementById("nooob").value;
+	var c = document.getElementById("hehe").value;
+	var d = document.getElementById("hehehe").value;
+	
+	if(a==""||b==""||c==""||d==""){
+		
+		alert("Please fill in all information")
+	
+	}else if(a!= b){
+		alert("Two password must be equal");
+	}
+	
+	
+}
+
+</script>
+</head>
+<body>
+
+
+	<!-- Navigation -->
+	<nav class="navbar  navbar-inverse" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> 
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand"
+					href="http://localhost:8080/neu.edu.cs5200/Index.jsp">MTG</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Rules</a></li>
+					<li><a href="http://localhost:8080/neu.edu.cs5200/SearchByName.jsp">SearchByName</a></li>
+					<li><a href="http://localhost:8080/neu.edu.cs5200/RandomACard.jsp">RandomACard</a></li>
+					<li><a href="http://localhost:8080/neu.edu.cs5200/AverageRate.jsp">Top10</a></li>
+				
+				
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://localhost:8080/neu.edu.cs5200/Login.jsp">Log
+							in</a></li>
+					<li><a>|</a></li>
+					<li><a href="http://localhost:8080/neu.edu.cs5200/Register.jsp">Register</a></li>
+
+				</ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+<div class="container">
+
+	<h1>Register</h1>
+	
+	<form  action="/neu.edu.cs5200/RegisterAction"> 
+		Username:
+		<input id="hehe" name="username" class="form-control"/>
+		
+		FirstName(Optional)
+		<input id="first" name="firstname"   class="form-control"/>
+		
+		LastName(Optional)
+		<input id="last" name="lastname"   class="form-control"/>
+		
+		Password:
+		<input id="noob" name="password" type="password"  class="form-control"/>
+		
+		Re-entered Password
+		<input id="nooob" name="repassword" type="password"  class="form-control"/>
+		
+		Email
+		<input id="hehehe" name="email" type="email"  class="form-control"/>
+		
+		
+		
+		<button class="btn btn-primary" value="submit" >Submit</button>
+	</form>	
+</div>
+
+
+
+	
+</body>
+</html>

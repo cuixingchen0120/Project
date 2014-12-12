@@ -1,0 +1,50 @@
+package neu.edu.cs5200;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class CardDAO {
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("neu.edu.cs5200");
+	EntityManager em = null;
+	
+	public CardDAO(){
+		em=factory.createEntityManager();
+	}
+
+	public void  createCard(Card card){
+		em.getTransaction().begin();
+		em.persist(card);
+		em.getTransaction().commit();	
+		
+		
+	}
+	
+	
+	
+	
+	public Card findCardById(int id) {
+		em.getTransaction().begin();
+		Card card = em.find(Card.class, id);
+		em.getTransaction().commit();
+		return card;		
+	}
+	
+	public void removeCardById(int id) {
+		em.getTransaction().begin();
+		Card card = em.getReference(Card.class, id);
+		Set<User> users = card.getFavourUsers();
+		for (User u : users)
+			u.getFavourCards().remove(card);
+		em.remove(card);
+		em.getTransaction().commit();
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

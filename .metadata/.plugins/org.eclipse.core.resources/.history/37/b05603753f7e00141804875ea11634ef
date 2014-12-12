@@ -1,0 +1,175 @@
+package neu.edu.cs5200;
+
+import java.io.Serializable;
+import java.lang.String;
+
+import javax.persistence.*;
+
+import java.util.Date;
+import java.util.List;
+
+
+/**
+ * Entity implementation class for Entity: User
+ *
+ */
+@Entity
+
+public class User implements Serializable {
+
+	   
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
+	private int id;
+	
+	@Column(length=255)
+	private String Username;
+	
+	@Column(length=255)
+	private String Password;
+	
+	@Column(length=255)
+	private String FirstName;
+	
+	@Column(length=255)
+	private String LastName;
+	
+	@Column(length=255)
+	private String email;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateOfRegister;
+	
+	private static final long serialVersionUID = 1L;
+	
+	//bi-directional many-to-one association to Like
+		//@OneToMany(mappedBy="user")
+	//	private List<Like> likes;
+		
+	
+	//bi-directional many-to-one association to Timer
+	  //  @OneToMany(mappedBy="user")
+		//private List<Comment> comment;
+	//bi-directional many-to-one association to History
+	@OneToMany(mappedBy="user")
+	private List<History> histories;
+
+
+	public User() {
+		super();
+	}   
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}   
+	public String getUsername() {
+		return this.Username;
+	}
+
+	public void setUsername(String Username) {
+		this.Username = Username;
+	}   
+	public String getPassword() {
+		return this.Password;
+	}
+
+	public void setPassword(String Password) {
+		this.Password = Password;
+	}   
+	public String getFirstName() {
+		return this.FirstName;
+	}
+
+	public void setFirstName(String FirstName) {
+		this.FirstName = FirstName;
+	}   
+	public String getLastName() {
+		return this.LastName;
+	}
+
+	public void setLastName(String LastName) {
+		this.LastName = LastName;
+	}   
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}   
+	public Date getDateOfRegister() {
+		return this.dateOfRegister;
+	}
+
+	public void setDateOfRegister(Date dateOfRegister) {
+		this.dateOfRegister = dateOfRegister;
+	}
+	
+	public List<History> getHistories() {
+		return this.histories;
+	}
+
+	public void setHistories(List<History> histories) {
+		this.histories = histories;
+	}
+
+	public History addHistory(History history) {
+		getHistories().add(history);
+		history.setUser(this);
+
+		return history;
+	}
+
+	public History removeHistory(History history) {
+		getHistories().remove(history);
+		history.setUser(null);
+
+		return history;
+	}
+
+	//public List<Like> getLikes() {
+		//return likes;
+	//}
+	//public void setLikes(List<Like> likes) {
+		//this.likes = likes;
+	//}
+	public User(String username, String password, String firstName,
+			String lastName, String email, Date dateOfRegister) {
+		super();
+		Username = username;
+		Password = password;
+		FirstName = firstName;
+		LastName = lastName;
+		this.email = email;
+		this.dateOfRegister = dateOfRegister;
+	}
+	public User(int id, String username, String password, String firstName,
+			String lastName, String email, Date dateOfRegister) {
+		super();
+		this.id = id;
+		Username = username;
+		Password = password;
+		FirstName = firstName;
+		LastName = lastName;
+		this.email = email;
+		this.dateOfRegister = dateOfRegister;
+	}
+	public User(String username, String password, String email) {
+		super();
+		Username = username;
+		Password = password;
+		this.email = email;
+	}
+	public User(String username, String password) {
+		super();
+		Username = username;
+		Password = password;
+	}
+	
+   
+}
+

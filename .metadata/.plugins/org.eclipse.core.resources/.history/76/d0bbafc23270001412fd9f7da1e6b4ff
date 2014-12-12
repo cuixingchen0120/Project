@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="neu.edu.cs5200.*"%>
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+	function myFunction()
+	{
+		String name1=document.getELementByName("name").value;
+		
+		if(name1.equals(card.getName())){
+			 GetACardByName get = new GetACardByName();
+			 Card card = new Card();
+			card = get.getCardByName(name);
+			System.out.println("The card's id is" +card.getId() );
+			System.out.println("The Name is "  +card.getName() );
+		}else{
+			
+			alert("The card does not exist");
+		}
+		
+		
+	}
+	</script>
+
+<button type="button" onclick="myFunction()">click</button>
+
+</body>
+</html>

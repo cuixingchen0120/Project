@@ -1,0 +1,60 @@
+package neu.edu.cs5200;
+
+import java.io.Serializable;
+import java.lang.String;
+
+
+
+import java.sql.Date;
+
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Set
+ *
+ */
+@Entity
+
+public class Set implements Serializable {
+
+	   
+	@Id
+	public String id;
+	public String name;
+	public int total;
+	public Date releaseat;
+	private static final long serialVersionUID = 1L;
+
+	public Set() {
+		super();
+	}   
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}   
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}   
+	public int getTotal() {
+		return this.total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}   
+	public Date getReleaseat() {
+		return this.releaseat;
+	}
+
+	public void setReleaseat(Date releaseat) {
+		this.releaseat = releaseat;
+	}
+   
+}

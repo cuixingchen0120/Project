@@ -1,0 +1,87 @@
+package neu.edu.cs5200;
+
+import java.io.Serializable;
+import java.lang.String;
+import java.util.Date;
+
+import javax.persistence.*;
+
+/**
+ * Entity implementation class for Entity: Comment
+ *
+ */
+@Entity
+
+public class Comment implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
+	private int commentId;
+	private String comment;
+	@Temporal(TemporalType.DATE)
+	private Date date;
+	private String username;
+	private String cardname;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="userid")
+	private User user;
+	
+	//bi-directional many-to-one association to User
+	//@ManyToOne
+	//@JoinColumn(name="username")
+	//private User user;
+	
+	
+	private static final long serialVersionUID = 1L;
+
+	public Comment() {
+		super();
+	}   
+	public Integer getCommentId() {
+		return this.commentId;
+	}
+
+
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
+	}   
+	public String getComment() {
+		return this.comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}   
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}   
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getCardname() {
+		return cardname;
+	}
+	public void setCardname(String cardname) {
+		this.cardname = cardname;
+	}   
+	
+//	public User getUser() {
+//		return user;
+//	}
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+
+
+
+}

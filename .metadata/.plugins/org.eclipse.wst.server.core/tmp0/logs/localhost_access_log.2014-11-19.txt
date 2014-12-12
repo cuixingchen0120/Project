@@ -1,0 +1,15 @@
+127.0.0.1 - - [19/Nov/2014:02:54:50 +0800] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:02:54:52 +0800] "GET /neu.edu.cs5200/RandomACard.jsp HTTP/1.1" 200 2582
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:02:54:52 +0800] "GET /neu.edu.cs5200/css/round-about.css HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:02:54:52 +0800] "GET /neu.edu.cs5200/css/bootstrap.min.css HTTP/1.1" 304 -
+127.0.0.1 - - [19/Nov/2014:06:44:32 +0800] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:06:44:32 +0800] "GET /neu.edu.cs5200/SearchByName.jsp HTTP/1.1" 200 2588
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:06:44:32 +0800] "GET /neu.edu.cs5200/css/round-about.css HTTP/1.1" 404 1019
+127.0.0.1 - - [19/Nov/2014:07:16:39 +0800] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:16:40 +0800] "GET /neu.edu.cs5200/SearchByName.jsp HTTP/1.1" 200 2588
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:16:40 +0800] "GET /neu.edu.cs5200/css/round-about.css HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:16:44 +0800] "GET /neu.edu.cs5200/SearchByName.jsp?name=Skinrender&action=search HTTP/1.1" 200 2827
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:16:44 +0800] "GET /neu.edu.cs5200/css/round-about.css HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:17:32 +0800] "GET /neu.edu.cs5200/SearchByName.jsp?name=&action=search HTTP/1.1" 500 2345
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:23:17 +0800] "GET /neu.edu.cs5200/SearchByName.jsp HTTP/1.1" 200 2588
+0:0:0:0:0:0:0:1 - - [19/Nov/2014:07:23:17 +0800] "GET /neu.edu.cs5200/css/round-about.css HTTP/1.1" 404 1019

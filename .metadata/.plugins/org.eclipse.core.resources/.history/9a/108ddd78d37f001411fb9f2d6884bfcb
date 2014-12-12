@@ -1,0 +1,84 @@
+package neu.edu.cs5200;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the like database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Like.findAll", query="SELECT l FROM Like l")
+public class Like implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int id;
+
+	private int cardid;
+
+	private String cardname;
+
+	private int userid;
+
+	private String username;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="UserId")
+	private User user;
+
+	public Like() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCardid() {
+		return this.cardid;
+	}
+
+	public void setCardid(int cardid) {
+		this.cardid = cardid;
+	}
+
+	public String getCardname() {
+		return this.cardname;
+	}
+
+	public void setCardname(String cardname) {
+		this.cardname = cardname;
+	}
+
+	public int getUserid() {
+		return this.userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
+}

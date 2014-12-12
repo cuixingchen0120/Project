@@ -1,0 +1,58 @@
+package neu.edu.cs5200;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SearchByNameServlet
+ */
+@WebServlet(name = "hehe", urlPatterns={"/SearchByName"})
+public class SearchByNameServlet extends HttpServlet {
+	
+
+	
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String CardName = request.getParameter("name");
+		System.out.println(CardName);
+		
+		try{
+		GetACardByName get = new GetACardByName();
+		Card card = new Card();
+		card = get.getCardByName(CardName);
+		request.setAttribute("card" , card);
+		UserDAO dao = new UserDAO();
+		String username = Global.username;
+		User user = new User();
+		user =dao.findUserbyUsername(username);
+		HistoryDAO hdao = new HistoryDAO();
+		History history = new History();
+		
+		hdao.createHistory(user, history);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/SearchByNamenDAO.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+		catch(Exception e){
+			PrintWriter out=response.getWriter(); 
+			
+			  out.print("<script language='javascript'>alert('Please enter a right card name!');window.location.href='/neu.edu.cs5200/SearchByName.jsp';</script>");
+			  //out.write("<script>alert(Please);location.href='/neu.edu.cs5200/SearchByName.jsp'</script>");
+		}
+		
+	}
+
+}
+

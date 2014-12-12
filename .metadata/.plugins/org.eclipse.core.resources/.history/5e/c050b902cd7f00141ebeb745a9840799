@@ -1,0 +1,101 @@
+package neu.edu.cs5200;
+
+import java.text.DecimalFormat;
+import java.util.List;
+import javax.persistence.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class AverageRateDAO {
+	
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("MTG");
+	EntityManager em = null;
+
+	public AverageRateDAO(){
+		em = factory.createEntityManager();
+	}	
+	
+    public void createAverageRate(AverageRate averagerate){
+    	em.getTransaction().begin();
+    	em.persist(averagerate);
+    	em.getTransaction().commit();
+    	em.close();
+    }
+    
+	public void deleteAverageRate(){
+		em.getTransaction().begin();
+		Query query = em.createQuery("DELETE FROM AverageRate a");
+		query.executeUpdate();
+		em.getTransaction().commit();
+		em.close();
+		}
+
+    public void CalculateRate(){
+
+    	em.getTransaction().begin();
+    	Query Q1 = em.createQuery("SELECT r.cardname FROM Rate r GROUP BY r.cardname");
+    	List result1 = Q1.getResultList();
+    	int n = 0;
+    	int totalnum = result1.size();	
+    	
+		while(n < totalnum){
+			
+		Query Q2 = em.createQuery("SELECT SUM(r.rate)/COUNT(r.cardname) FROM Rate r Where r.cardname =:cardname GROUP BY r.cardname ");
+		Q2.setParameter("cardname", result1.get(n));	
+		Double scale = (Double)Q2.getSingleResult();  
+		DecimalFormat fnum = new DecimalFormat("#.0"); 
+		String arate = fnum.format(scale); 
+		String cardname = (String)result1.get(n);
+		
+		AverageRateDAO dao = new AverageRateDAO(); 
+        AverageRate app1 = new AverageRate (cardname,arate);
+		dao.createAverageRate(app1);
+			
+    	n=n+1; 
+    	}
+    	
+        em.getTransaction().commit();
+	    em.close();
+	    
+    }
+    
+	public void Output(){
+		em.getTransaction().begin();
+    	Query Q1 = em.createQuery("SELECT a.cardname FROM AverageRate a ORDER BY a.averagerate DESC");
+    	Query Q2 = em.createQuery("SELECT a.averagerate FROM AverageRate a ORDER BY a.averagerate DESC");
+    	List result1 = Q1.getResultList();
+    	List result2 = Q2.getResultList();
+    	int totalnum = result1.size();	
+    	int n = 0;
+    	int top = n+1;
+    	if(totalnum > 9){
+    		while(n < 11){
+    			System.out.print("Top" + top + ":  ");
+            	System.out.print(result1.get(n));
+            	System.out.print(" - ");
+            	System.out.println(result2.get(n));
+    	    	n=n+1; 
+    	    	top=top+1;
+    	    	}
+    		} 
+    	else{
+    		System.out.println("Error");
+    	}
+
+        em.getTransaction().commit();
+	    em.close();
+	    
+    }
+    
+
+
+    public static void main(String[] args) {
+    	AverageRateDAO dao = new AverageRateDAO();
+    	 dao.deleteAverageRate();
+    	AverageRateDAO dao1 = new AverageRateDAO();
+    	 dao1.CalculateRate();
+    	AverageRateDAO dao2 = new AverageRateDAO();
+    	 dao2.Output();
+        }
+}
